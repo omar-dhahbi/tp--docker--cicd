@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TP Docker Avancé</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Frontend - TP Docker</h1>
+    <pre id="api">Loading API...</pre>
+    <pre id="db">Loading DB...</pre>
+</div>
+
+<script>
+async function load() {
+    const api = await fetch("http://localhost:3000/api").then(r => r.json());
+    document.getElementById("api").innerText = JSON.stringify(api, null, 2);
+
+    const db = await fetch("http://localhost:3000/db").then(r => r.json());
+    document.getElementById("db").innerText = JSON.stringify(db, null, 2);
+}
+setTimeout(load, 1500);
+</script>
+</body>
+</html>
+
