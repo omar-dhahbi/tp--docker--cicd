@@ -1,16 +1,15 @@
-name: CI - Mon Premier Pipeline  # Nom du workflow
+name: CI - Test de Base
 
-on:                               # Déclencheurs
+on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-jobs:                             # Ensemble des jobs
-  build:
-    runs-on: ubuntu-latest        # Environnement du runner
+jobs:
+  hello:
+    runs-on: ubuntu-latest
 
-    steps:                        # Liste des étapes
-      - name: Étape 1
-        run: echo "Hello CI"
-
-      - name: Étape 2
-        run: echo "Pipeline terminé"
+    steps:
+      - name: Afficher un message
+        run: echo "CI fonctionne !"
