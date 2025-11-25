@@ -1,16 +1,16 @@
 name: CI - Mon Premier Pipeline  # Nom du workflow
 
-on:                               # Déclencheurs
+on:
   push:
-    branches: [ main ]
+    branches: [ "main", "develop" ]
+    paths:
+      - "backend/**"
+      - "frontend/**"
 
-jobs:                             # Ensemble des jobs
-  build:
-    runs-on: ubuntu-latest        # Environnement du runner
+  pull_request:
+    branches: [ "main" ]
 
-    steps:                        # Liste des étapes
-      - name: Étape 1
-        run: echo "Hello CI"
+  schedule:
+    - cron: "0 2 * * *"   # Exécution tous les jours à 2h du matin
 
-      - name: Étape 2
-        run: echo "Pipeline terminé"
+  workflow_dispatch:      # Lancement manuel
