@@ -11,6 +11,14 @@ on:
     branches: [ "main" ]
 
   schedule:
-    - cron: "0 2 * * *"   # Exécution tous les jours à 2h du matin
+    - cron: "0 2 * * *"   # Tous les jours à 2h du matin
 
-  workflow_dispatch:      # Lancement manuel
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Afficher un message
+        run: echo "Pipeline exécuté avec succès 🚀"
