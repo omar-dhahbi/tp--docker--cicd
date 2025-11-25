@@ -1,21 +1,27 @@
 const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
+require("dotenv").config(); // Pour lire les variables d'environnement depuis .env
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Config PostgreSQL
 const pool = new Pool({
-  host: process.env.DB_HOST || "db",
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT || 5432,
-  user: process.env.DB_USER || "admin",
-  password: process.env.DB_PASSWORD || "secret",
-  database: process.env.DB_NAME || "mydb"
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
+// Middleware
 app.use(cors({
-  origin: ["http://localhost:8080"]
+  origin: process.env.CORS_ORIGIN || "*" // Frontend URL
 }));
+app.use(express.json());
 
+// Routes
 app.get("/api", (req, res) => {
   res.json({
     message: "Hello from Backend!",
@@ -37,7 +43,7 @@ app.get("/db", async (req, res) => {
   }
 });
 
+// Démarrage du serveur
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);
 });
-
