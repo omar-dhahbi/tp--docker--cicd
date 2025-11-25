@@ -9,7 +9,6 @@ on:
 
   pull_request:
     branches: [ "main" ]
-
   schedule:
     - cron: "0 2 * * *"   # Exécution tous les jours à 2h du matin
 
